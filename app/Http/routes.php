@@ -11,6 +11,17 @@
 |
 */
 
+use App\Role;
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/create', function () {
+    $user = User::findorFail(1);
+
+    $role = new Role(['name'=>'admin']);
+
+    $user->roles()->save($role);
 });
