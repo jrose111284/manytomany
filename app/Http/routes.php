@@ -25,3 +25,28 @@ Route::get('/create', function () {
 
     $user->roles()->save($role);
 });
+
+Route::get('/read', function () {
+    $user = User::findOrFail(1);
+
+    foreach ($user->roles as $role) {
+        echo $role->name;
+    }
+
+});
+
+Route::get('/update', function () {
+    $user = User::findOrfail(1);
+
+    if ($user->has('roles')){
+        foreach ($user->roles as $role) {
+            $role->update(['name'=>'Administrator']);
+            $role->save();
+        }
+    }
+
+});
+
+Route::get('/delete', function () {
+
+});
